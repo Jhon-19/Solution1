@@ -24,7 +24,7 @@ eq11 = T5*cos(theta5)+Gt+Gb == T4*cos(theta4)+Ft;
 eq12 = T5*sin(theta5) == T4*sin(theta4);
 eq13 = T5*cos(theta5) == T6*cos(theta6)+Gl;
 eq14 = T5*sin(theta5) == T6*sin(theta6);
-eq15 = T5*sin(theta5)/7*(sqrt(1+(cot(theta5))^2)-sqrt(1+(cot(theta6))^2))+cos(theta0)+cos(theta1)+cos(theta2)+cos(theta3)+cos(theta5)+h == 18;
+eq15 = T5*sin(theta5)/7*(sqrt(1+(cot(theta5))^2)-sqrt(1+(cot(theta6))^2))+cos(theta0)+cos(theta1)+cos(theta2)+cos(theta3)+cos(theta4)+cos(theta5)+h == 18;
 result = vpasolve([eq1, eq2, eq3, eq4, eq5, eq6, eq7, eq8, eq9, eq10, eq11, eq12, eq13, eq14, eq15], [h, T0, T1, T2, T3, T4, T5, T6, theta0, theta1, theta2, theta3, theta4, theta5, theta6]);
 disp('h');
 disp(result.h);
@@ -62,8 +62,14 @@ function thetaO = format(thetaI)
     while(thetaI >= 2*pi)
         thetaI = thetaI-2*pi;
     end
+    if(thetaI > pi)
+        thetaI = thetaI-pi;
+    end
     while(thetaI <= 0)
         thetaI = thetaI+2*pi;
+    end
+    if(thetaI > pi)
+        thetaI = thetaI-pi;
     end
     thetaO = thetaI/pi*180;
 end
